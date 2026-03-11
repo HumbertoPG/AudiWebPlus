@@ -1,27 +1,70 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:3001";
+import Sidebar from "./components/Sidebar";
+import Chatbot from "./components/Chatbot";
 
-export default function App() {
-  const [message, setMessage] = useState("precio del Yaris 2021");
-  const [answer, setAnswer] = useState("");
+import Models from "./pages/Models";
+import CarDetail from "./pages/CarDetail";
+import Home from "./pages/Home";
 
-  async function ask() {
-    const res = await fetch(`${API}/chat`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message })
-    });
-    const data = await res.json();
-    setAnswer(data.answer || JSON.stringify(data));
-  }
+import CarsAdmin from "./admin/CarsAdmin";
+import EditCar from "./admin/EditCar";
+import CreateCar from "./admin/CreateCar";
+import AdminLayout from "./admin/AdminLayout";
+
+import Newsletter from "./components/Newsletter";
+import AdminDashboard from "./admin/AdminDashboard";
+import AppointmentsAdmin from "./admin/AppoinmentsAdmin";
+
+function Layout() {
+
+  const location = useLocation();
+
+  const isAdmin = location.pathname.startsWith("/admin");
 
   return (
-    <div style={{ padding: 16, fontFamily: "system-ui" }}>
-      <h2>Chatbot demo</h2>
-      <input value={message} onChange={(e) => setMessage(e.target.value)} style={{ width: 320 }} />
-      <button onClick={ask} style={{ marginLeft: 8 }}>Enviar</button>
-      <p><b>Respuesta:</b> {answer}</p>
+    <div className="layout">
+
+      {!isAdmin && <Sidebar />}
+      
+
+      <Routes>
+
+        {/* CLIENT ROUTES */}
+
+        <Route path="/" element={<Home />} />
+
+        <Route path="/home" element={<Home />} />
+
+        <Route path="/models" element={<Models />} />
+
+        <Route path="/models/:id" element={<CarDetail />} />
+        <Route path="/used-cars/:id" element={<CarDetail />} />
+
+        {/* ADMIN */}
+
+        <Route path="/admin" element={<AdminLayout/>}>
+
+          <Route index element={<AdminDashboard/>}/>
+
+          <Route path="cars" element={<CarsAdmin/>}/>
+          <Route path="cars/new" element={<CreateCar/>}/>
+          <Route path="cars/edit/:id" element={<EditCar/>}/>
+          <Route path="appointments" element={<AppointmentsAdmin/>}/>
+
+          </Route>
+
+      </Routes>
+      {!isAdmin && <Chatbot />}
+
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Layout />
+    </BrowserRouter>
   );
 }
