@@ -8,8 +8,8 @@ import CarDetail from "./pages/CarDetail";
 import Home from "./pages/Home";
 
 import CarsAdmin from "./admin/CarsAdmin";
-import EditCar from "./admin/EditCar";
-import CreateCar from "./admin/CreateCar";
+// import EditCar from "./admin/EditCar";
+// import CreateCar from "./admin/CreateCar";
 import AdminLayout from "./admin/AdminLayout";
 
 import Newsletter from "./components/Newsletter";
@@ -48,8 +48,8 @@ function Layout() {
           <Route index element={<AdminDashboard/>}/>
 
           <Route path="cars" element={<CarsAdmin/>}/>
-          <Route path="cars/new" element={<CreateCar/>}/>
-          <Route path="cars/edit/:id" element={<EditCar/>}/>
+          {/* <Route path="cars/new" element={<CreateCar/>}/> */}
+          {/* <Route path="cars/edit/:id" element={<EditCar/>}/> */}
           <Route path="appointments" element={<AppointmentsAdmin/>}/>
 
           </Route>

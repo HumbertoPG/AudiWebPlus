@@ -1,10 +1,10 @@
 import {
-  findAllAppointments,
-  findAppointmentById,
-  insertAppointment,
-  updateAppointmentById,
-  deleteAppointmentById
-} from "../repositories/appointmentsRepository.js";
+  findAllFinancingRequests,
+  findFinancingRequestById,
+  insertFinancingRequest,
+  updateFinancingRequestById,
+  deleteFinancingRequestById
+} from "../repositories/financing.repository.js";
 
 function createHttpError(status, message) {
   const error = new Error(message);
@@ -16,7 +16,7 @@ function parseId(id) {
   const parsed = Number(id);
 
   if (!Number.isInteger(parsed) || parsed <= 0) {
-    throw createHttpError(400, "Invalid appointment id");
+    throw createHttpError(400, "Invalid financing request id");
   }
 
   return parsed;
@@ -51,65 +51,54 @@ function normalizeEmail(value) {
   return email;
 }
 
-function normalizeAppointmentDate(value) {
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    throw createHttpError(400, "appointment_date must be a valid ISO date");
-  }
-
-  return date.toISOString();
-}
-
 function normalizePayload(payload) {
   return {
     client_name: normalizeRequiredText(payload?.client_name, "client_name"),
     email: normalizeEmail(payload?.email),
     phone: normalizeOptionalText(payload?.phone),
-    appointment_date: normalizeAppointmentDate(payload?.appointment_date),
     interest_model: normalizeRequiredText(payload?.interest_model, "interest_model"),
     message: normalizeOptionalText(payload?.message)
   };
 }
 
-export async function listAppointments() {
-  return await findAllAppointments();
+export async function listFinancingRequests() {
+  return await findAllFinancingRequests();
 }
 
-export async function getAppointment(id) {
+export async function getFinancingRequest(id) {
   const parsedId = parseId(id);
-  const item = await findAppointmentById(parsedId);
+  const item = await findFinancingRequestById(parsedId);
 
   if (!item) {
-    throw createHttpError(404, "Appointment not found");
+    throw createHttpError(404, "Financing request not found");
   }
 
   return item;
 }
 
-export async function createNewAppointment(payload) {
+export async function createNewFinancingRequest(payload) {
   const normalized = normalizePayload(payload);
-  return await insertAppointment(normalized);
+  return await insertFinancingRequest(normalized);
 }
 
-export async function updateExistingAppointment(id, payload) {
+export async function updateExistingFinancingRequest(id, payload) {
   const parsedId = parseId(id);
   const normalized = normalizePayload(payload);
-  const updated = await updateAppointmentById(parsedId, normalized);
+  const updated = await updateFinancingRequestById(parsedId, normalized);
 
   if (!updated) {
-    throw createHttpError(404, "Appointment not found");
+    throw createHttpError(404, "Financing request not found");
   }
 
   return updated;
 }
 
-export async function removeAppointment(id) {
+export async function removeFinancingRequest(id) {
   const parsedId = parseId(id);
-  const deleted = await deleteAppointmentById(parsedId);
+  const deleted = await deleteFinancingRequestById(parsedId);
 
   if (!deleted) {
-    throw createHttpError(404, "Appointment not found");
+    throw createHttpError(404, "Financing request not found");
   }
 
   return deleted;

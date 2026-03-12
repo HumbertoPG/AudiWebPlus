@@ -1,16 +1,52 @@
-export async function subscribeNewsletter(req, res, next) {
+import {
+  listSubscribers,
+  getSubscriber,
+  createNewSubscriber,
+  updateExistingSubscriber,
+  removeSubscriber
+} from "../services/newsletter.service.js";
+
+export async function getSubscribers(req, res, next) {
   try {
-    const { email } = req.body;
-    const result = await addSubscriber(email);
-    res.status(201).json(result);
+    const items = await listSubscribers();
+    res.json(items);
   } catch (error) {
-    // Si el error es por email duplicado (código 23505 en Postgres)
-    if (error.code === '23505') {
-      return res.status(400).json({ 
-        error: "already_subscribed", 
-        message: "Este correo ya está registrado." 
-      });
-    }
-    next(error); // Otros errores (conexión, etc.) van al middleware global
+    next(error);
+  }
+}
+
+export async function getSubscriberById(req, res, next) {
+  try {
+    const item = await getSubscriber(req.params.id);
+    res.json(item);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function createSubscriber(req, res, next) {
+  try {
+    const item = await createNewSubscriber(req.body);
+    res.status(201).json(item);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function updateSubscriber(req, res, next) {
+  try {
+    const item = await updateExistingSubscriber(req.params.id, req.body);
+    res.json(item);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function deleteSubscriber(req, res, next) {
+  try {
+    await removeSubscriber(req.params.id);
+    res.json({ ok: true });
+  } catch (error) {
+    next(error);
   }
 }

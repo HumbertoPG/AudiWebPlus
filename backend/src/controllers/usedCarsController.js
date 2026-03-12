@@ -1,29 +1,52 @@
-import * as usedCarsService from "../services/usedCarsService.js";
+import {
+  listUsedCars,
+  getUsedCar,
+  createNewUsedCar,
+  updateExistingUsedCar,
+  removeUsedCar
+} from "../services/usedCarsService.js";
 
-export const getUsedCars = async (req, res) => {
+export async function getUsedCars(req, res, next) {
   try {
-    console.log("Entró a GET /api/used_cars");
-    const cars = await usedCarsService.getUsedCars();
-    console.log("Used cars encontrados:", cars.length);
+    const cars = await listUsedCars(req.query);
     res.json(cars);
   } catch (error) {
-    console.error("Error en getUsedCars:", error);
-    res.status(500).json({ error: "Error interno del servidor" });
+    next(error);
   }
-};
+}
 
-export const getUsedCar = async (req, res) => {
+export async function getUsedCarById(req, res, next) {
   try {
-    console.log("Entró a GET /api/used_cars/:id", req.params.id);
-    const car = await usedCarsService.getUsedCar(req.params.id);
-
-    if (!car) {
-      return res.status(404).json({ message: "Vehículo no encontrado" });
-    }
-
+    const car = await getUsedCar(req.params.id);
     res.json(car);
   } catch (error) {
-    console.error("Error en getUsedCar:", error);
-    res.status(500).json({ error: "Error interno del servidor" });
+    next(error);
   }
-};
+}
+
+export async function createUsedCar(req, res, next) {
+  try {
+    const car = await createNewUsedCar(req.body);
+    res.status(201).json(car);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function updateUsedCar(req, res, next) {
+  try {
+    const car = await updateExistingUsedCar(req.params.id, req.body);
+    res.json(car);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function deleteUsedCar(req, res, next) {
+  try {
+    await removeUsedCar(req.params.id);
+    res.json({ ok: true });
+  } catch (error) {
+    next(error);
+  }
+}

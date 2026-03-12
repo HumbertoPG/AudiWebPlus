@@ -1,9 +1,18 @@
-import express from "express";
-import { getUsedCars, getUsedCar } from "../controllers/usedCarsController.js";
+import { Router } from "express";
+import {
+  getUsedCars,
+  getUsedCarById,
+  createUsedCar,
+  updateUsedCar,
+  deleteUsedCar
+} from "../controllers/usedCarsController.js";
 
-const router = express.Router();
+const router = Router();
 
 router.get("/", getUsedCars);
-router.get("/:id", getUsedCar);
+router.get("/:id", getUsedCarById);
+router.post("/", createUsedCar);
+router.put("/:id", updateUsedCar);
+router.delete("/:id", deleteUsedCar);
 
 export default router;

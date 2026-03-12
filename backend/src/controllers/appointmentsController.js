@@ -1,21 +1,52 @@
-import * as appointmentsService from "../services/appointmentsService.js";
+import {
+  listAppointments,
+  getAppointment,
+  createNewAppointment,
+  updateExistingAppointment,
+  removeAppointment
+} from "../services/appointmentsService.js";
 
-export const createAppointment = async (req, res) => {
+export async function getAppointments(req, res, next) {
   try {
-    const appointment = await appointmentsService.createAppointment(req.body);
-    res.status(201).json(appointment);
+    const items = await listAppointments();
+    res.json(items);
   } catch (error) {
-    console.error("Error creando cita:", error);
-    res.status(500).json({ error: "Error interno del servidor" });
+    next(error);
   }
-};
+}
 
-export const getAppointments = async (_req, res) => {
+export async function getAppointmentById(req, res, next) {
   try {
-    const appointments = await appointmentsService.getAppointments();
-    res.json(appointments);
+    const item = await getAppointment(req.params.id);
+    res.json(item);
   } catch (error) {
-    console.error("Error obteniendo citas:", error);
-    res.status(500).json({ error: "Error interno del servidor" });
+    next(error);
   }
-};
+}
+
+export async function createAppointment(req, res, next) {
+  try {
+    const item = await createNewAppointment(req.body);
+    res.status(201).json(item);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function updateAppointment(req, res, next) {
+  try {
+    const item = await updateExistingAppointment(req.params.id, req.body);
+    res.json(item);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function deleteAppointment(req, res, next) {
+  try {
+    await removeAppointment(req.params.id);
+    res.json({ ok: true });
+  } catch (error) {
+    next(error);
+  }
+}

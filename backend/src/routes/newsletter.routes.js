@@ -1,9 +1,18 @@
 import { Router } from "express";
-import { subscribeNewsletter } from "../controllers/newsletter.controller.js";
+import {
+  getSubscribers,
+  getSubscriberById,
+  createSubscriber,
+  updateSubscriber,
+  deleteSubscriber
+} from "../controllers/newsletter.controller.js";
 
 const router = Router();
 
-// Esta es una ruta de API, no un componente de React
-router.post("/", subscribeNewsletter);
+router.get("/", getSubscribers);
+router.get("/:id", getSubscriberById);
+router.post("/", createSubscriber);
+router.put("/:id", updateSubscriber);
+router.delete("/:id", deleteSubscriber);
 
 export default router;
