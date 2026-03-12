@@ -55,9 +55,6 @@ export default function Home() {
           </div>
         </section>
       <Newsletter />
-      <div className="services-container">
-        <FinancingPopup />
-      </div>
   </div>
     </div>
   );

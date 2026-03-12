@@ -11,10 +11,10 @@ import CarsAdmin from "./admin/CarsAdmin";
 // import EditCar from "./admin/EditCar";
 // import CreateCar from "./admin/CreateCar";
 import AdminLayout from "./admin/AdminLayout";
-
-import Newsletter from "./components/Newsletter";
 import AdminDashboard from "./admin/AdminDashboard";
 import AppointmentsAdmin from "./admin/AppoinmentsAdmin";
+import FinancingAdmin from "./admin/FinancingAdmin"
+import NewsletterAdmin from "./admin/NewsletterAdmin";
 
 function Layout() {
 
@@ -48,9 +48,9 @@ function Layout() {
           <Route index element={<AdminDashboard/>}/>
 
           <Route path="cars" element={<CarsAdmin/>}/>
-          {/* <Route path="cars/new" element={<CreateCar/>}/> */}
-          {/* <Route path="cars/edit/:id" element={<EditCar/>}/> */}
           <Route path="appointments" element={<AppointmentsAdmin/>}/>
+          <Route path="financing" element={<FinancingAdmin/>}/>
+          <Route path="newsletter" element={<NewsletterAdmin/>}/>
 
           </Route>
 

@@ -10,16 +10,24 @@ export default function FinancingPopup({ modelName, onClose }) {
     message: ""
   });
 
-  async function submit() {
-    if(!form.client_name || !form.email) return alert("Por favor llena los campos básicos");
-    try {
-      await requestFinancing(form);
-      alert("Solicitud enviada");
-      onClose();
-    } catch {
-      console.log("Error al enviar");
-    }
+async function submit() {
+  // Validación básica en el cliente
+  if(!form.client_name || !form.email || !form.interest_model) {
+    return alert("Por favor llena los campos obligatorios (Nombre, Email y Modelo)");
   }
+  
+  try {
+    // Aquí llamamos a la función de tu api.js
+    await requestFinancing(form); 
+    
+    alert("¡Solicitud enviada con éxito!");
+    onClose();
+  } catch (error) {
+    // 'error.message' contendrá lo que el backend mandó (ej: "email must be valid")
+    console.error("Error al enviar:", error);
+    alert("No se pudo enviar la solicitud: " + error.message);
+  }
+}
 
   return (
     <div className="popup modern-popup">

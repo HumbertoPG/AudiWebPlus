@@ -62,57 +62,65 @@ export default function CarsAdmin() {
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
-        <div>
-          <h1>Inventario de Autos</h1>
-          <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
-            <button
-              className={carType === "new" ? "btn-primary-round" : "btn-cancel"}
-              onClick={() => setCarType("new")}
-            >
-              Nuevos
+        <div style={{ 
+            display: "flex", 
+            justifyContent: "space-between", 
+            alignItems: "flex-end", // Alinea los botones con el título
+            marginBottom: "30px",
+            marginTop: "20px",
+            gap: "600px"
+        }}>
+            <div>
+                <h1 style={{ marginBottom: "20px" }}>Inventario de Autos</h1>
+                <div style={{ display: "flex", gap: "10px" }}>
+                    <button
+                        className={carType === "new" ? "btn-primary-round" : "btn-cancel"}
+                        onClick={() => setCarType("new")}
+                    >
+                        Nuevos
+                    </button>
+                    <button
+                        className={carType === "used" ? "btn-primary-round" : "btn-cancel"}
+                        onClick={() => setCarType("used")}
+                    >
+                        Usados
+                    </button>
+                </div>
+            </div>
+
+            <button className="btn-primary-round" onClick={openCreate}>
+               Nuevo Auto
             </button>
-            <button
-              className={carType === "used" ? "btn-primary-round" : "btn-cancel"}
-              onClick={() => setCarType("used")}
-            >
-              Usados
-            </button>
-          </div>
         </div>
 
-        <button className="btn-primary-round" onClick={openCreate}>
-          Nuevo Auto
-        </button>
-      </div>
-
-      <div className="table-wrapper">
-        <table className="admin-table-full">
-          <thead>
-            <tr>
-              <th>Modelo</th>
-              <th>Año</th>
-              <th>Precio</th>
-              {carType === "used" && <th>Kilometraje</th>}
-              <th style={{ textAlign: "right" }}>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cars.map((car) => (
-              <tr key={car.id_car_model || car.id_used_car}>
-                <td className="bold-text">{car.model_name}</td>
-                <td>{car.model_year}</td>
-                <td>${Number(car.base_price || car.price || 0).toLocaleString("es-MX")}</td>
-                {carType === "used" && <td>{Number(car.odometer_km || 0).toLocaleString()} km</td>}
-                <td className="table-actions-right">
-                  <button onClick={() => openEdit(car)} className="link-edit">Editar</button>
-                  <button onClick={() => openDelete(car)} className="link-delete">Borrar</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+        <div className="table-wrapper">
+                <table className="admin-table-full">
+                <thead>
+                  <tr>
+                    <th style={{ textAlign: "left" }}>Modelo</th>
+                    <th style={{ textAlign: "left" }}>Año</th>
+                    <th style={{ textAlign: "left" }}>Precio</th>
+                    {carType === "used" && <th style={{ textAlign: "left" }}>Kilometraje</th>}
+                    {/* "Acciones" alineado a la derecha igual que los botones */}
+                    <th style={{ textAlign: "right" }}>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cars.map((car) => (
+                    <tr key={car.id_car_model || car.id_used_car}>
+                      <td className="bold-text">{car.model_name}</td>
+                      <td>{car.model_year}</td>
+                      <td>${Number(car.base_price || car.price || 0).toLocaleString("es-MX")}</td>
+                      {carType === "used" && <td>{Number(car.odometer_km || 0).toLocaleString()} km</td>}
+                      <td className="table-actions-right">
+                        <button onClick={() => openEdit(car)} className="link-edit">Editar</button>
+                        <button onClick={() => openDelete(car)} className="link-delete">Borrar</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+        </div>   
 
       {activeModal === "form" && (
         <CarFormModal

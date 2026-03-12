@@ -18,9 +18,13 @@ export default function AppoinmentsAdmin() {
 
   return (
     <div>
-      <h2>Citas agendadas</h2>
+      <h2 style={{ 
+            marginBottom: "30px",
+            marginTop: "20px",
+        }}>Citas agendadas</h2>
 
-      <table>
+     <div className="table-wrapper">
+        <table className="admin-table-full">
         <thead>
           <tr>
             <th>Cliente</th>
@@ -46,6 +50,7 @@ export default function AppoinmentsAdmin() {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

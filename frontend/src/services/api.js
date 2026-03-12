@@ -133,3 +133,30 @@ export async function deleteUsedCar(id) {
   });
   return handleResponse(res, "deleteUsedCar");
 }
+// SUSTITUYE las funciones de abajo en tu api.js:
+
+export async function getFinancingRequests() {
+  const res = await fetch(`${API}/financing`);
+  return handleResponse(res, "getFinancingRequests");
+}
+
+export async function deleteFinancingRequest(id) {
+  const res = await fetch(`${API}/financing/${id}`, {
+    method: "DELETE",
+  });
+  return handleResponse(res, "deleteFinancingRequest");
+}
+
+// Obtener todos los suscriptores (llama a listSubscribers en el service)
+export async function getNewsletterEmails() {
+  const res = await fetch(`${API}/newsletter`);
+  return handleResponse(res, "getNewsletterEmails");
+}
+
+// Eliminar un suscriptor (llama a removeSubscriber en el service)
+export async function deleteNewsletterEmail(id) {
+  const res = await fetch(`${API}/newsletter/${id}`, {
+    method: "DELETE",
+  });
+  return handleResponse(res, "deleteNewsletterEmail");
+}

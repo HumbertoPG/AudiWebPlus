@@ -37,7 +37,6 @@ const USED_CAR_INITIAL = {
 
 export default function CarFormModal({ carType, car, close, refresh }) {
   const isEdit = Boolean(car);
-
   const [form, setForm] = useState(
     car || (carType === "new" ? NEW_CAR_INITIAL : USED_CAR_INITIAL)
   );
@@ -47,96 +46,115 @@ export default function CarFormModal({ carType, car, close, refresh }) {
   }, [car, carType]);
 
   function handleChange(e) {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
+    setForm({ ...form, [e.target.name]: e.target.value });
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
+    const clean = (val, isFloat = false) => {
+      if (val === "" || val === undefined || val === null) return null;
+      return isFloat ? parseFloat(val) : parseInt(val, 10);
+    };
+
+    let dataToSend = carType === "new" 
+      ? {
+          ...form,
+          model_year: clean(form.model_year),
+          base_price: clean(form.base_price, true),
+          fuel_capacity: clean(form.fuel_capacity),
+          horse_power: clean(form.horse_power),
+          v_max: clean(form.v_max),
+          acceleration: clean(form.acceleration, true),
+          cylinders: clean(form.cylinders),
+        }
+      : {
+          ...form,
+          model_year: clean(form.model_year),
+          price: clean(form.price, true),
+          odometer_km: clean(form.odometer_km),
+          horse_power: clean(form.horse_power),
+        };
 
     try {
       if (carType === "new") {
-        if (isEdit) {
-          await updateCar(car.id_car_model, form);
-        } else {
-          await createCar(form);
-        }
+        isEdit ? await updateCar(car.id_car_model, dataToSend) : await createCar(dataToSend);
       } else {
-        if (isEdit) {
-          await updateUsedCar(car.id_used_car, form);
-        } else {
-          await createUsedCar(form);
-        }
+        isEdit ? await updateUsedCar(car.id_used_car, dataToSend) : await createUsedCar(dataToSend);
       }
-
       await refresh();
       close();
     } catch (error) {
-      console.error("Error guardando auto:", error);
-      alert("Error al guardar el auto");
+      alert("Error al guardar: " + (error.response?.data?.message || "Revisa los datos"));
     }
   }
 
   return (
     <div className="modal-overlay" onClick={close}>
-      <div className="popup modern-popup" style={{ maxWidth: "800px", width: "95%" }} onClick={(e) => e.stopPropagation()}>
-        <h2>
-          {isEdit ? "Editar" : "Nuevo"} auto {carType === "new" ? "nuevo" : "usado"}
-        </h2>
+      <div className="popup modern-popup" style={{ maxWidth: "750px", width: "95%" }} onClick={e => e.stopPropagation()}>
+        <h3>{isEdit ? "Editar" : "Nuevo"} Auto {carType === "new" ? "Nuevo" : "Usado"}</h3>
+        <p className="popup-subtitle">Completa la información del inventario</p>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{ marginTop: "20px" }}>
           <div className="form-grid-2">
-            <input name="model_name" placeholder="Modelo" value={form.model_name} onChange={handleChange} required />
-            <input name="model_year" placeholder="Año" value={form.model_year} onChange={handleChange} required />
+            <div className="popup-field">
+              <input className="popup-input-round" name="model_name" placeholder="Modelo" value={form.model_name} onChange={handleChange} required />
+            </div>
+            <div className="popup-field">
+              <input className="popup-input-round" type="number" name="model_year" placeholder="Año" value={form.model_year} onChange={handleChange} required />
+            </div>
 
             {carType === "new" ? (
               <>
-                <input name="base_price" placeholder="Precio base" value={form.base_price} onChange={handleChange} required />
-                <input name="fuel_type" placeholder="Combustible" value={form.fuel_type} onChange={handleChange} required />
-                <input name="fuel_capacity" placeholder="Capacidad de combustible" value={form.fuel_capacity} onChange={handleChange} />
-                <input name="horse_power" placeholder="HP" value={form.horse_power} onChange={handleChange} />
-                <input name="v_max" placeholder="Velocidad máxima" value={form.v_max} onChange={handleChange} />
-                <input name="acceleration" placeholder="Aceleración" value={form.acceleration} onChange={handleChange} />
-                <input name="cylinders" placeholder="Cilindros" value={form.cylinders} onChange={handleChange} />
+                <div className="popup-field">
+                  <input className="popup-input-round" type="number" step="0.01" name="base_price" placeholder="Precio base" value={form.base_price} onChange={handleChange} required />
+                </div>
+                <div className="popup-field">
+                  <input className="popup-input-round" name="fuel_type" placeholder="Combustible" value={form.fuel_type} onChange={handleChange} required />
+                </div>
+                <div className="popup-field">
+                  <input className="popup-input-round" type="number" name="horse_power" placeholder="HP" value={form.horse_power} onChange={handleChange} />
+                </div>
+                <div className="popup-field">
+                  <input className="popup-input-round" type="number" step="0.1" name="acceleration" placeholder="Aceleración" value={form.acceleration} onChange={handleChange} />
+                </div>
               </>
             ) : (
               <>
-                <input name="price" placeholder="Precio" value={form.price} onChange={handleChange} required />
-                <input name="odometer_km" placeholder="Kilometraje" value={form.odometer_km} onChange={handleChange} required />
-                <input name="color" placeholder="Color" value={form.color} onChange={handleChange} />
-                <input name="engine" placeholder="Motor" value={form.engine} onChange={handleChange} />
-                <input name="fuel_type" placeholder="Combustible" value={form.fuel_type} onChange={handleChange} />
-                <input name="horse_power" placeholder="HP" value={form.horse_power} onChange={handleChange} />
-                <input name="drivetrain" placeholder="Tracción" value={form.drivetrain} onChange={handleChange} />
-                <input name="transmission" placeholder="Transmisión" value={form.transmission} onChange={handleChange} />
+                <div className="popup-field">
+                  <input className="popup-input-round" type="number" step="0.01" name="price" placeholder="Precio" value={form.price} onChange={handleChange} required />
+                </div>
+                <div className="popup-field">
+                  <input className="popup-input-round" type="number" name="odometer_km" placeholder="Kilometraje" value={form.odometer_km} onChange={handleChange} required />
+                </div>
+                <div className="popup-field">
+                  <input className="popup-input-round" name="color" placeholder="Color" value={form.color} onChange={handleChange} />
+                </div>
+                <div className="popup-field">
+                  <input className="popup-input-round" name="fuel_type" placeholder="Combustible" value={form.fuel_type} onChange={handleChange} />
+                </div>
               </>
             )}
 
-            <input
-              name="main_image_url"
-              placeholder="URL imagen"
-              value={form.main_image_url}
-              onChange={handleChange}
-              className="full"
-            />
+            <div className="popup-field full">
+              <input className="popup-input-round" name="main_image_url" placeholder="URL de imagen" value={form.main_image_url} onChange={handleChange} />
+            </div>
 
-            <textarea
-              name="description"
-              placeholder="Descripción"
-              value={form.description}
-              onChange={handleChange}
-              className="full"
-            />
+            <div className="popup-field full">
+              <textarea 
+                className="popup-input-round" 
+                name="description" 
+                placeholder="Descripción detallada..." 
+                value={form.description} 
+                onChange={handleChange}
+                style={{ height: "80px", borderRadius: "15px", resize: "none" }}
+              />
+            </div>
           </div>
 
-          <div className="popup-actions-row" style={{ marginTop: "20px" }}>
-            <button type="button" className="btn-cancel" onClick={close}>
-              Cancelar
-            </button>
+          <div className="popup-actions-row" style={{ marginTop: "30px" }}>
+            <button type="button" className="btn-cancel" onClick={close}>Cancelar</button>
             <button type="submit" className="btn-primary-round">
-              {isEdit ? "Guardar cambios" : "Crear auto"}
+              {isEdit ? "Guardar Cambios" : "Crear Auto"}
             </button>
           </div>
         </form>
