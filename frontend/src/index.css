@@ -428,8 +428,8 @@ margin:20px 0;
   position: fixed;
   bottom: 30px;
   right: 30px;
-  width: 65px;
-  height: 65px;
+  width: 150px;
+  height: 150px;
   background: #000;
   color: white;
   font-size: 24px;
@@ -441,6 +441,7 @@ margin:20px 0;
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
   z-index: 1000;
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: 60px;
 }
 
 .chatbot-button:hover {

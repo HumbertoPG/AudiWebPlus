@@ -56,7 +56,7 @@ export default function CarDetail() {
   const labelKilometraje = isUsed ? "Kilometraje" : "V. Máxima";
   const specTraccion = isUsed
     ? car.drivetrain || "N/A"
-    : car.fuel_type || "Gasolina";
+    : "Gasolina" || "Gasolina";
   const labelTraccion = isUsed ? "Tracción" : "Combustible";
 
   return (
@@ -97,10 +97,16 @@ export default function CarDetail() {
               <span className="spec-label">Potencia</span>
               <span className="spec-value">{car.horse_power || "N/A"} HP</span>
             </div>
-            <div className="spec-box">
+            {isUsed ? 
+            (<div className="spec-box">
+              <span className="spec-label">Combustible</span>
+              <span className="spec-value">{car.fuel_type || "N/A"}</span>
+            </div>) 
+            :
+            (<div className="spec-box">
               <span className="spec-label">Aceleración</span>
               <span className="spec-value">{car.acceleration || "N/A"}s</span>
-            </div>
+            </div>)}
             <div className="spec-box">
               <span className="spec-label">{labelKilometraje}</span>
               <span className="spec-value">{specKilometraje}</span>

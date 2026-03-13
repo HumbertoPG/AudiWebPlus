@@ -27,7 +27,7 @@ export default function Chatbot() {
 
     try {
       // Enviamos el objeto que el controlador espera: { message: "..." }
-      const res = await sendChat({ message: userMessage.text });
+      const res = await sendChat(userMessage.text);
       
       setMessages((prev) => [
         ...prev,

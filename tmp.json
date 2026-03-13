@@ -1,0 +1,207 @@
+{
+  "model_name": "Audi Q5",
+  "model_year": 2026,
+  "base_price": 1199900,
+  "description": "SUV de lujo mediano con nueva plataforma PPC, tecnología mild-hybrid y diseño renovado.",
+  "main_image_url": "   ",
+  "fuel_capacity": 70,
+  "horse_power": 272,
+  "v_max": 240,
+  "acceleration": 6.9,
+  "cylinders": 4,
+  "fuel_type": "gas"
+}
+
+{
+  "model_name": "A3 Sportback",
+  "model_year": 2026,
+  "base_price": 724900,
+  "description": "Hatchback premium con diseño deportivo, faros matrix LED personalizables y digitalización.",
+  "main_image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288276/AUDIA3_SPORTBACK_uvcswx.png",
+  "fuel_capacity": 50,
+  "horse_power": 150,
+  "v_max": 220,
+  "acceleration": 8.2,
+  "cylinders": 4,
+  "fuel_type": "gas"
+}
+
+{
+  "model_name": "Audi Q2",
+  "model_year": 2026,
+  "base_price": 724900,
+  "description": "SUV urbano, compacto y ágil, ideal para la ciudad con un diseño expresivo y tecnología avanzada.",
+  "main_image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288276/AUDIQ2_NORMAL_svnvee.png",
+  "fuel_capacity": 55,
+  "horse_power": 150,
+  "v_max": 215,
+  "acceleration": 8.5,
+  "cylinders": 4,
+  "fuel_type": "gas"
+}
+
+{
+  "model_name": "Q5 Sportback",
+  "model_year": 2026,
+  "base_price": 1299900,
+  "description": "Versión coupé del Q5, con la misma motorización pero una silueta más deportiva y dinámica.",
+  "main_image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288277/AUDIQ5_SPORTBACK_pei31f.png",
+  "fuel_capacity": 70,
+  "horse_power": 272,
+  "v_max": 240,
+  "acceleration": 6.9,
+  "cylinders": 4,
+  "fuel_type": "gas"
+}
+
+{
+  "model_name": "SQ5",
+  "model_year": 2026,
+  "base_price": 1609900,
+  "description": "Versión de alto rendimiento del Q5 con motor V6, enfoque deportivo y equipamiento exclusivo.",
+  "main_image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288277/AUDISQ5_SPORTBACK_tcpfvb.png",
+  "fuel_capacity": 70,
+  "horse_power": 367,
+  "v_max": 250,
+  "acceleration": 4.5,
+  "cylinders": 6,
+  "fuel_type": "gas"
+}
+
+//-----------------------//
+
+{
+  "car_model_id": 9,
+  "configuration_name": "Dynamic",
+  "price": 1199900,
+  "description": "Versión de acceso al Q5 2026.",
+  "equipment": "Equipamiento de serie: Audi virtual cockpit, llantas de 17, Audi drive select, sensores de estacionamiento traseros.",
+  "fuel_type": "gas",
+  "image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288276/AUDIQ5_NORMAL_ovg4ag.png",
+  "trunk_volume": 520,
+  "acceleration": 6.9
+}
+
+{
+  "car_model_id": 10,
+  "configuration_name": "Dynamic 35 TFSI",
+  "price": 724900,
+  "description": "Versión de acceso del A3 Sportback.",
+  "equipment": "Motor 1.4 TFSI, llantas de 17, faros LED, Audi smartphone interface, sensores de estacionamiento traseros.",
+  "fuel_type": "gas",
+  "image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288276/AUDIA3_SPORTBACK_uvcswx.png",
+  "trunk_volume": 380,
+  "acceleration": 8.2
+}
+
+{
+  "car_model_id": 11,
+  "configuration_name": "Dynamic",
+  "price": 724900,
+  "description": "Versión de acceso del Q2.",
+  "equipment": "Motor 1.4 TFSI, llantas de 17, faros LED, Audi smartphone interface, sensores de estacionamiento traseros.",
+  "fuel_type": "gas",
+  "image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288276/AUDIQ2_NORMAL_svnvee.png",
+  "trunk_volume": 405,
+  "acceleration": 8.5
+}
+
+{
+  "car_model_id": 12,
+  "configuration_name": "Elite",
+  "price": 1299900,
+  "description": "Versión de entrada para el Q5 Sportback.",
+  "equipment": "Basado en equipamiento Elite del Q5 SUV, con carrocería Sportback: techo panorámico, asientos de piel, Audi virtual cockpit plus.",
+  "fuel_type": "gas",
+  "image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288277/AUDIQ5_SPORTBACK_pei31f.png",
+  "trunk_volume": 475,
+  "acceleration": 6.9
+}
+
+{
+  "car_model_id": 13,
+  "configuration_name": "TFSI",
+  "price": 1609900,
+  "description": "Versión única del SQ5.",
+  "equipment": "Motor V6 3.0L TFSI de 367 hp, tracción quattro con diferencial deportivo, suspensión deportiva, acabado S line exclusivo.",
+  "fuel_type": "gas",
+  "image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288277/AUDISQ5_SPORTBACK_tcpfvb.png",
+  "trunk_volume": 475,
+  "acceleration": 4.5
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+{
+  "model_name": "Audi Q7",
+  "odometer_km": 41000,
+  "price": 940000,
+  "color": "Blanco glaciar metalizado",
+  "engine": "Motorización híbrida enchufable que combina un motor de gasolina V6 con un motor eléctrico",
+  "fuel_type": "Gasolina",
+  "description": "S line 55 TFSI hybrid quattro tiptronic",
+  "main_image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288277/AUDIQ7_NORMAL_gmz1gq.png",
+  "model_year": 2025,
+  "horse_power": 340,
+  "drivetrain": "Tracción permanente a las cuatro ruedas quattro con diferencial central autobloqueante",
+  "transmission": "Automática"
+}
+
+{
+  "model_name": "Audi Q5 Sportback",
+  "odometer_km": 78506,
+  "price": 680000,
+  "color": "Plata Forente metalizado",
+  "engine": "2.0 TFSI (gasolina) con tecnología ultra",
+  "fuel_type": "Gasolina",
+  "description": "Select 45 TFSI quattro S tronic",
+  "main_image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288277/AUDIQ5_SPORTBACK_pei31f.png",
+  "model_year": 2024,
+  "horse_power": 249,
+  "drivetrain": "Tracción en las cuatro ruedas quattro con tecnología ultra",
+  "transmission": "Automática"
+}
+
+{
+  "model_name": "Audi Q3",
+  "odometer_km": 80017,
+  "price": 408999,
+  "color": "Gris metálico",
+  "engine": "Motor de 4 cilindros y 1.4 litros turbo",
+  "fuel_type": "Gasolina",
+  "description": "1.4 TFSI S line DCT SUV 2020",
+  "main_image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288277/AUDIQ3_NORMAL_bz9ylm.png",
+  "model_year": 2020,
+  "horse_power": 150,
+  "drivetrain": "Tracción delantera",
+  "transmission": "Automática"
+}
+
+{
+  "model_name": "Audi A3",
+  "odometer_km": 22585,
+  "price": 445999,
+  "color": "Azul metálico",
+  "engine": "Motor 1.4 litros Turbo TFSI de 4 cilindros",
+  "fuel_type": "Gasolina",
+  "description": "1.4 35 TFSI Select Auto Sedan 2022",
+  "main_image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288276/AUDIA3_SPORTBACK_uvcswx.png",
+  "model_year": 2022,
+  "horse_power": 150,
+  "drivetrain": "Tracción delantera",
+  "transmission": "Automática"
+}
+
+{
+  "model_name": "Audi Q5",
+  "odometer_km": 71832,
+  "price": 459999,
+  "color": "Negro",
+  "engine": "2.0 litros y 4 cilindros en línea, turboalimentado (TFSI)",
+  "fuel_type": "Gasolina",
+  "description": "2.0 45 TFSI S line DCT 4WD SUV 2020",
+  "main_image_url": "https://res.cloudinary.com/dxufxtl23/image/upload/v1773288276/AUDIQ5_NORMAL_ovg4ag.png",
+  "model_year": 2020,
+  "horse_power": 252,
+  "drivetrain": "Tracción integral quattro con tecnología ultra",
+  "transmission": "Automática"
+}
