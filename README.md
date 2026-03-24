@@ -10,3 +10,11 @@
 
 * ollama serve -> Levantar servior Ollama
 * ollama run llama3.1 -> Iniciar modelo llama3.1
+
+# Students 
+Paulina Sofía Hernández Ávila   
+Diana Sofía Vives Culebro   
+Vanessa Monter Salcedo    
+Sofía Zugasti Delgado
+Humberto Pérez Galindo            
+Emmanuel Barragán González 	
